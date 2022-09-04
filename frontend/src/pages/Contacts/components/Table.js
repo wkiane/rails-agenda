@@ -31,7 +31,7 @@ function ContactsTable() {
                                 <td>{contact.birthday}</td>
                                 <td>
                                     <Link className='btn btn-outline-primary d-inline-block' to={`/address/create/${contact.id}`}>Adcionar Endereço</Link>
-                                    <Link className='btn btn-outline-primary d-inline-block ms-2' to=''>Ver Endereços</Link>
+                                    <Link className='btn btn-outline-primary d-inline-block ms-2' to={`/address/${contact.id}`}>Ver Endereços</Link>
                                 </td>
                             </tr>
                         )
