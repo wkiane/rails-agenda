@@ -9,6 +9,12 @@ class ContactsController < ApplicationController
         paginated_response(@contacts)
     end
 
+    def show
+        id = params[:id]
+        contact = Contact.where(id: id).first
+        render json: contact
+    end
+
     def create
         contact = Contact.new(contact_params)
         if contact.valid?

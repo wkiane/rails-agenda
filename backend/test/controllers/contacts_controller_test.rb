@@ -30,6 +30,16 @@ describe ContactsController do
     assert_equal(body['records'].length, 2)
   end
 
+  test "should return contact details with addresses" do
+    contact = create(:contact)
+    create(:address, contact_id: contact.id)
+    create(:address, contact_id: contact.id)
+
+    get "/contacts/#{contact.id}"
+    body = JSON.parse(response.body)
+    assert_equal(body['addresses'].length, 2)
+  end
+
   test "should create contact" do
     assert_difference('Contact.count') do
       post "/contacts", params: {full_name: 'João Fernando', identifier: '17734503040', email: 'teste@gmail.com', birthday: '1990/02/02'}
