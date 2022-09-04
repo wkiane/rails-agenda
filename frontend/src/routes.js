@@ -14,7 +14,7 @@ const Router = () => (
         <Routes>
             <Route path="/" extact element={<Contacts />} />
             <Route path="/contacts/create" element={<CreateContact />} />
-            <Route path="/address/create" element={<CreateAddress />} />
+            <Route path="/address/create/:id" element={<CreateAddress />} />
         </Routes>
     </BrowserRouter>
 );
