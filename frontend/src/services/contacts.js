@@ -8,9 +8,7 @@ export async function getContacts(params = {}) {
 }
 
 export async function createContact(data) {
-    const response = await client.post('/contacts', {
-        data
-    })
+    const response = await client.post('/contacts', data)
     return response
 }
 
