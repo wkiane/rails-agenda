@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  def api_resources(res)
+    resources res, only: [:index, :create]
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root to: 'application#index'
+  api_resources :contacts
 end

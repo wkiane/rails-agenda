@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Contact do ActiveSupport::TestCase
   test "should save valid contact" do
-    contact = Contact.new(full_name: 'João Fernando', identifier: '17734503040', email: 'teste@gmail.com', birthday: '1990/02/02')
+    contact = create(:contact)
     contact.save
 
     contacts = Contact.all
