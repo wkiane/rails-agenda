@@ -3,7 +3,6 @@ require "test_helper"
 describe Contact do ActiveSupport::TestCase
   test "should save valid contact" do
     contact = create(:contact)
-    contact.save
 
     contacts = Contact.all
     assert_equal(contacts.length, 1) 
@@ -19,10 +18,10 @@ describe Contact do ActiveSupport::TestCase
   end
 
   test "should not save duplicated email or duplicated identifier" do
-    contact = Contact.new(full_name: 'João Fernando', identifier: '17734503040', email: 'teste@gmail.com', birthday: '1990/02/02')
+    contact = create(:contact, identifier: '17734503040', email: 'teste@gmail.com')
     contact.save
 
-    contact2 = Contact.new(full_name: 'João Fernando', identifier: '17734503040', email: 'teste@gmail.com', birthday: '1990/02/02')
+    contact2 = build(:contact, identifier: '17734503040', email: 'teste@gmail.com')
     contact2.valid?
     assert_includes(contact2.errors[:email], "has already been taken")
     assert_includes(contact2.errors[:identifier], "has already been taken")
