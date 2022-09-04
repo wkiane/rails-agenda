@@ -2,8 +2,7 @@ require "test_helper"
 
 describe Address do
   setup do
-    @contact = Contact.new(full_name: 'João Fernando', identifier: '17734503040', email: 'teste@gmail.com', birthday: '1990/02/02')
-    @contact.save
+    @contact = create(:contact, full_name: 'João Fernando', identifier: '17734503040', email: 'teste@gmail.com', birthday: '1990/02/02')
   end
 
   test "should save valid address" do

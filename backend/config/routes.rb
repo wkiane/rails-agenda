@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   root to: 'application#index'
   api_resources :contacts
+  api_resources :addresses
 end
