@@ -34,7 +34,7 @@ function CreateContact() {
                     <Form.Group className='w-50 me-2'>
                         <Form.Label>CPF</Form.Label>
                         <Controller
-                            name="cpf"
+                            name="identifier"
                             control={control}
                             render={({ field }) => <IMaskInput  className='form-control' placeholder='CPF' mask="000.000.000-00" {...field} />}
                         />
@@ -42,7 +42,7 @@ function CreateContact() {
 
                     <Form.Group className='w-50 ms-2'>
                         <Form.Label>Data de Nascimento</Form.Label>
-                        <Form.Control required {...register("birthdate")} type="date" placeholder="Data de Nascimento" />
+                        <Form.Control required {...register("birthday")} type="date" placeholder="Data de Nascimento" />
                     </Form.Group>
                 </div>
 

@@ -12,7 +12,13 @@ class ContactsController < ApplicationController
     def show
         id = params[:id]
         contact = Contact.where(id: id).first
-        render json: contact
+        render json: contact,
+        include: {
+            addresses: {
+              except: [:created_at, :updated_at],
+            },
+        },
+        except: [:created_at, :updated_at]
     end
 
     def create

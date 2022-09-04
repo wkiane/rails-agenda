@@ -1,6 +1,7 @@
-import { Pagination, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContacts } from '../provider';
+import Pagination from './Pagination';
 
 function ContactsTable() {
     const { contacts } = useContacts()
@@ -12,6 +13,7 @@ function ContactsTable() {
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>CPF</th>
                         <th>Data de nascimento</th>
                         <th></th>
                     </tr>
@@ -23,9 +25,10 @@ function ContactsTable() {
                                 <td>{contact.id}</td>
                                 <td>
                                     <p>{contact.full_name}</p>
-                                    <p>{contact.cpf}</p>
+                                    <p class="small">{contact.email}</p>
                                 </td>
-                                <td>{contact.birthdate}</td>
+                                <td>{contact.identifier}</td>
+                                <td>{contact.birthday}</td>
                                 <td>
                                     <Link className='btn btn-outline-primary d-inline-block' to={`/address/create/${contact.id}`}>Adcionar Endereço</Link>
                                     <Link className='btn btn-outline-primary d-inline-block ms-2' to=''>Ver Endereços</Link>
@@ -35,13 +38,7 @@ function ContactsTable() {
                     }
                 </tbody>
             </Table>
-            <Pagination>
-                <Pagination.Prev />
-                <Pagination.Item active>{1}</Pagination.Item>
-                <Pagination.Item>{2}</Pagination.Item>
-                <Pagination.Item>{3}</Pagination.Item>
-                <Pagination.Next />
-            </Pagination>
+            <Pagination />
         </>
     );
 }

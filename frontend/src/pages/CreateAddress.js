@@ -26,7 +26,7 @@ function CreateAddress() {
     }
 
     async function onSubmit(data) {
-        const { status } = await createAddress({ ...data });
+        const { status } = await createAddress({ ...data, contact_id: id });
         if (status === 201) {
             navigate('/');
         }
@@ -40,7 +40,7 @@ function CreateAddress() {
                     <Form.Group className='w-100 mt-4'>
                         <Form.Label>CEP</Form.Label>
                         <Controller
-                            name="cep"
+                            name="zip_code"
                             control={control}
                             render={({ field: { onChange, value, ref } }) =>
                                 <IMaskInput required className='form-control' placeholder='CEP' mask="00000-000" onChange={onChange} onBlur={() => fetchZipCode(value)} selected={value} ref={ref} />}

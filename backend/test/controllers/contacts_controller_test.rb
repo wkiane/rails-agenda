@@ -16,7 +16,7 @@ describe ContactsController do
     body = JSON.parse(response.body)
 
     first_contact_id = body['records'][0]['id']
-    assert_equal(first_contact_id, 21)
+    assert_equal(first_contact_id, 20)
   end
 
   test "should return searched contacts" do
