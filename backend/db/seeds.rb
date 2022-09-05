@@ -11,6 +11,6 @@ require 'factory_bot'
 include FactoryBot::Syntax::Methods
 
 contacts = create_list(:contact, 80)
-addresses = create_list(:address, 5, contact_id: contacts[0]['id'])
-addresses = create_list(:address, 3, contact_id: contacts[1]['id'])
-addresses = create_list(:address, 1, contact_id: contacts[2]['id'])
+addresses = create_list(:address, 5, contact_id: contacts[79]['id'])
+addresses = create_list(:address, 3, contact_id: contacts[78]['id'])
+addresses = create_list(:address, 1, contact_id: contacts[77]['id'])
