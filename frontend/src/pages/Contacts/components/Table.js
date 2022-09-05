@@ -25,13 +25,13 @@ function ContactsTable() {
                                 <td>{contact.id}</td>
                                 <td>
                                     <p>{contact.full_name}</p>
-                                    <p class="small">{contact.email}</p>
+                                    <p className="small">{contact.email}</p>
                                 </td>
                                 <td>{contact.identifier}</td>
                                 <td>{contact.birthday}</td>
                                 <td>
                                     <Link className='btn btn-outline-primary d-inline-block' to={`/address/create/${contact.id}`}>Adcionar Endereço</Link>
-                                    <Link className='btn btn-outline-primary d-inline-block ms-2' to={`/address/${contact.id}`}>Ver Endereços</Link>
+                                    <Link className='btn btn-outline-primary d-inline-block ms-lg-2 mt-2 mt-lg-0' to={`/address/${contact.id}`}>Ver Endereços</Link>
                                 </td>
                             </tr>
                         )

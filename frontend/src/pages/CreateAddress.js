@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import states from '../utils/states'
 import { useForm, Controller } from 'react-hook-form';
@@ -6,10 +6,13 @@ import { IMaskInput } from 'react-imask';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAddressViaCEP } from '../services/viaCep';
 import { createAddress } from '../services/address';
+import { handleApiErrors } from '../utils/handleApiErrors';
+import Toast from '../components/Toast';
 
 
 function CreateAddress() {
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('')
     const { id } = useParams();
     const { control, register, handleSubmit, setValue } = useForm()
 
@@ -26,14 +29,18 @@ function CreateAddress() {
     }
 
     async function onSubmit(data) {
-        const { status } = await createAddress({ ...data, contact_id: id });
-        if (status === 201) {
+        try {
+            await createAddress({ ...data, contact_id: id });
             navigate('/');
+        } catch (error) {
+            if(error.name === 'AxiosError') handleApiErrors(error, setErrorMessage)
         }
     }
 
     return (
         <Container>
+            {errorMessage && <Toast message={errorMessage} onClose={() => setErrorMessage('')} />}
+
             <Form className='mx-auto mt-5' onSubmit={handleSubmit(onSubmit)}>
                 <h1>Adcionar Endereço</h1>
                 <div className='d-flex mt-4'>

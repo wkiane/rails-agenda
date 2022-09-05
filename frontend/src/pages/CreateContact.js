@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
+import Toast from '../components/Toast'
 import { useForm, Controller } from 'react-hook-form';
 import { IMaskInput } from 'react-imask';
 import { useNavigate } from 'react-router-dom';
 import { createContact } from '../services/contacts';
+import { handleApiErrors } from '../utils/handleApiErrors';
 
 
 function CreateContact() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState('')
     const { control, register, handleSubmit } = useForm()
 
     async function onSubmit(data) {
-        const { status } = await createContact({ ...data });
-        if (status === 201) {
+        try {
+            await createContact({ ...data });
             navigate('/');
+        } catch (error) {
+            if(error.name === 'AxiosError') handleApiErrors(error, setErrorMessage)
         }
     }
 
     return (
         <Container>
+            {errorMessage && <Toast message={errorMessage} onClose={() => setErrorMessage('')} />}
+
             <Form className='mx-auto mt-5' onSubmit={handleSubmit(onSubmit)}>
                 <h1>Criar Contato</h1>
                 <Form.Group className='mt-4'>
@@ -36,7 +43,7 @@ function CreateContact() {
                         <Controller
                             name="identifier"
                             control={control}
-                            render={({ field }) => <IMaskInput  className='form-control' placeholder='CPF' mask="000.000.000-00" {...field} />}
+                            render={({ field }) => <IMaskInput className='form-control' placeholder='CPF' mask="000.000.000-00" {...field} />}
                         />
                     </Form.Group>
 
