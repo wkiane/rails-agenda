@@ -2,10 +2,11 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/rails"
+require 'simplecov'
 
 # Consider setting MT_NO_EXPECTATIONS to not add expectations to Object.
 # ENV["MT_NO_EXPECTATIONS"] = true
-
+SimpleCov.start
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
